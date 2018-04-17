@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+void d1_ekleme(int param);
+int integerLen(unsigned long sayi_kontrol);
+
+int main(int argc,char * argv[]) {
+
+    unsigned long sayi=0,sonuc=0;
+    char *girilenSayi=0;
+
+    printf("Girilecek sayiyi girin :");
+    girilenSayi = argv[1];
+    sayi = atoi(girilenSayi);
+    if(integerLen(sayi)==9){
+         d1_ekleme(sayi);
+    }else{
+        printf("Sayiyi eksik ya da fazla girdiniz!!");
+    }
+
+   return 0;
+}
+int integerLen(unsigned long sayi_kontrol){
+
+    long int count=0;
+    while(sayi_kontrol != 0)
+    {
+        sayi_kontrol /= 10;
+        ++count;
+    }
+    return count;
+}
+
+void d1_ekleme(int param){
+    int toplam=0,kalan_sayi,temp, ilave=0,d1=0;
+    int i;
+    temp = param;
+    for (i=1; i<=integerLen(param); i++){
+
+            kalan_sayi = temp % 10;
+            toplam+=(kalan_sayi)*(i+1);
+            temp /= 10;
+      }
+    if ((toplam)%11 ==0){
+        d1=0;
+    }
+    else{
+        d1 =toplam%11;
+        ilave= 11-(toplam%11);
+    }
+     printf(" mod alınmıs deger -> %d\n Girdiginiz sayiya d1 eklenmis hali ->\n %d%d\n",d1,param,ilave);
+}
